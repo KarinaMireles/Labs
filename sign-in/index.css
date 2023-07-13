@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    background-color: #ea4c89;
+}
+
+.form {
+    padding-top: 30px;
+    background-color: lightgrey;
+    width: 400px;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.title {
+ padding-top: 50px;
+}
+
+button {
+    background-color: teal;
+    color: white;
+    padding: 10px;
+    display: block;
+    border: 0px solid white;
+    margin: 30px auto;
+    width: 100px;
+}
+
+input {
+    display: block;
+    border: 0px solid white;
+    border-bottom: 1px solid #cdcdcd;
+    width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+
+}
+
+a{
+    display: block;
+    color: o;
+    font-size: 10px;
+    padding-bottom: 10px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+element.style {
+    display: inline-block;
+
+}
