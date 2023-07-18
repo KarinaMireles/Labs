@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>jQuery Playground</title>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/jquery.css"/>
+</head>
+<body>
+    <header>
+        <div class="logo">David's Demo</div>
+        <nav>
+            <a href="index.html">Home</a>
+        </nav>
+    </header>
+    <div class="wrapper">
+        <h1>jQuery Playground</h1>
+        <article class="content">
+            <div class="top">
+                <div id="grant-image"><img src="images/grant-chirpus-student.png" alt="image of grand chripus mascot. A chicken wearing a Grand chirpus shirt."/><figcaption>Grant Chirpus</figcaption></div>
+                <p class="intro">This page has jQuery pre-installed.
+                   Use the dev tools console to experiment with jQuery selectors and actions.</p>
+                <p>Lorem ipsum dolor sit amet, pharetra purus ligula eget, cras sit id gravida, nec <a href="#venenatis">venenatis</a> parturient amet etiam, in commodo dignissim odio dolor iaculis ut, massa molestie. Integer aliquet vitae. Posuere eleifend lorem magna a elit, tempor dictum. Nunc sodales tempus at, feugiat quis massa metus class eget. Vel tellus viverra in adipiscing donec, <a href="#augue">augue in pellentesque</a>, nibh ornare lobortis. Sed vestibulum tristique pede neque. Suscipit suscipit, sollicitudin nulla in urna, sem suspendisse arcu est sed, sed amet dis. Nec nec fusce, habitant tellus elementum lacus orci egestas, turpis mauris, aenean elit ut sit. Nec tortor nunc tempus semper, tortor augue pellentesque. Vulputate eu vestibulum, ligula suscipit ultrices, nullam quis nascetur nulla.</p>
+                <ul>
+                    <li>Alpha</li>
+                    <li><em>Beta</em></li>
+                    <li>Gamma</li>
+                    <li><strong>Delta</strong></li>
+                </ul>
+                <p>Pellentesque cras dolor ipsum eget mauris, et augue amet, erat nunc tempus faucibus phasellus pellentesque mauris. Ullamcorper dolor vitae gravida dapibus vitae pede. Sed donec vel. Ullamcorper <a href="#massa">massa</a> morbi. Nibh sollicitudin eget, dui cillum non vel, nulla iaculis rhoncus, magna quis nunc in. Sapien sit ut magna et id, quis eleifend.</p>
+            </div>
+            <div class="boxes">
+                <div class="box word-start">H</div>
+                <div class="box">E</div>
+                <div class="box">L</div>
+                <div class="box">L</div>
+                <div class="box">O</div>
+                <div class="box word-start">W</div>
+                <div class="box">O</div>
+                <div class="box">R</div>
+                <div class="box">L</div>
+                <div class="box">D</div>
+            </div>
+            <div>
+                <form onsubmit="return false;">
+                    <p class="field">
+                        <label for="name">Name:</label> <input type="text" id="name" name="name" />
+                    </p>
+
+                    <p class="field">
+                        <label for="color">Color:</label>
+                        <select id="color" name="color">
+                            <option value="red">Red</option>
+                            <option value="white">White</option>
+                            <option value="blue">Blue</option>
+                        </select><br/>
+                    </p>
+
+                    <p class="field">
+                        <label>Drive on the:</label>
+                        <label><input type="radio" id="drive-left" name="drive" value="left" />Left</label>
+                        <label><input type="radio" id="drive-right" name="drive" value="right" checked />Right</label>
+                    </p>
+
+                    <p>
+                        <input type="submit" value="Submit Form"/>
+                    </p>
+                </form>
+            </div>
+        </article>
+    </div> <!--/.wrapper-->
+    <script src="libs/jquery-3.1.1.min.js"></script>
+</body>
+</html>
