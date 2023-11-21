@@ -20,10 +20,3 @@ const ProductsSchema = new mongoose.Schema(
 const Product = mongoose.model("Product", ProductSchema);
 export default Product;
 // models/Product.ts
-
-export interface Product {
-  _id?: string;
-  name: string;
-  price: number;
-  photoURL?: string;
-}
