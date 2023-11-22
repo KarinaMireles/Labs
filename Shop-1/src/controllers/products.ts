@@ -1,5 +1,4 @@
 import Product from "../models/Products";
-import Product from "../models/Product";
 import { reqRes, reqResNext } from "../utils/interfaces";
 import { ProductsNotFoundError } from "../utils/errors";
 
@@ -7,7 +6,7 @@ import { ProductsNotFoundError } from "../utils/errors";
 
 export const postProduct: reqRes = async (req, res) => {
   try {
-    const product = new Products(req.body);
+    const product = new Product(req.body);
     await product.save();
     res.status(201).send(product);
   } catch (err) {
@@ -21,21 +20,21 @@ export const getProductParams: reqResNext = async (req, res, next) => {
   try {
     if (Object.keys(req.query).length <= 0) next();
     else {
-      let Products = await Products.find();
+      let products = await Product.find();
 
       if (req.query && req.query["max-price"]) {
         const maxPrice = +req.query["max-price"];
-        Products = Products.filter((Product) => Product.price >= maxPrice);
+        products = products.filter((product) => product.price >= maxPrice);
       }
       if (req.query && req.query.includes) {
-        const searchitem = req.query.includes.toString()
-        Products = Product.filter((item) => item.name.includes(searchitem))
+        const searchitem = req.query.includes.toString();
+        products = products.filter((item) => item.name.includes(searchitem));
       }
-      if (req.query && req.query.limit) {[
-        const limit = +req.query.limit
-        products = products.slice(0, limit)
-      ]}
-      res.status(200).send(Products)
+      if (req.query && req.query.limit) {
+        const limit = +req.query.limit;
+        products = products.slice(0, limit);
+      }
+      res.status(200).send(products);
     }
   } catch (err) {
     res.status(500).send("Server Error");
@@ -44,10 +43,10 @@ export const getProductParams: reqResNext = async (req, res, next) => {
 
 // READ ALL
 
-export const getProduct: reqRes = async (req, res) => {
+export const getProducts: reqRes = async (req, res) => {
   try {
-    const products = await Products.find();
-    res.status(200).send(Products);
+    const products = await Product.find();
+    res.status(200).send(products);
   } catch (err) {
     res.status(500).send("Server Error");
   }
@@ -57,30 +56,22 @@ export const getProduct: reqRes = async (req, res) => {
 
 export const getProduct: reqRes = async (req, res) => {
   try {
-    const product = await Products.findById(req.params.id)
-    if (!product) throw new ProductsNotFoundError()
+    const product = await Product.findById(req.params.id);
+    if (!product) throw new ProductsNotFoundError();
     res.status(200).send(product);
   } catch (err) {
-    let stattus = { code 500, message: "Product" }
-    if (err instanceof ProductsNotFoundError) status = { code: 404, message: err.message }
+    let status = { code: 500, message: "Product" };
+    if (err instanceof ProductsNotFoundError)
+      status = { code: 404, message: err.message };
+    res.status(status.code).send(status.message);
   }
-  res.status(status.code).send(status.message);
-
 };
-
-
-
-
-
-
-
-
 
 // UPDATE
 
 export const updateProduct: reqRes = async (req, res) => {
   try {
-    const product = await Products.findById(req.params.id);
+    const product = await Product.findById(req.params.id);
     if (!product) throw new ProductsNotFoundError();
     if (req.body.name) product.name = req.body.name;
     if (req.body.price) product.price = req.body.price;
@@ -96,15 +87,14 @@ export const updateProduct: reqRes = async (req, res) => {
   }
 };
 
-
 // DESTROY
 
 export const deleteProduct: reqRes = async (req, res) => {
   try {
-      await Products.findByIdAndDelete(req.params.id);
+    await Product.findByIdAndDelete(req.params.id);
     res.status(204).send();
   } catch (err) {
-    let status = { code: 500, message: "Product not found"};
+    let status = { code: 500, message: "Product not found" };
     res.status(status.code).send(status.message);
   }
 };
