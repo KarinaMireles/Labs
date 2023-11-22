@@ -1,12 +1,12 @@
-import SubGenre from "../models/SubGenre";
 import { reqRes, reqResNext } from "../utils/interfaces";
-import { SubGenreNotFoundError } from "../utils/errors";
+import { UserNotFoundError } from "../utils/errors";
+import User from "../models/Users";
 
 // CREATE
 
 export const postUser: reqRes = async (req, res) => {
   try {
-    const user = new Users(req.body);
+    const user = new User(req.body);
     await user.save();
     res.status(201).send(user);
   } catch (err) {
@@ -18,7 +18,7 @@ export const postUser: reqRes = async (req, res) => {
 
 export const getUsers: reqRes = async (req, res) => {
   try {
-    const users = await Users.find();
+    const users = await User.find();
     res.status(200).send(users);
   } catch (err) {
     res.status(500).send("Bad Request");
@@ -29,9 +29,9 @@ export const getUsers: reqRes = async (req, res) => {
 
 export const getUser: reqRes = async (req, res) => {
   try {
-    const user = await Users.findById(req.params.id);
+    const user = await User.findById(req.params.id);
     if (!user) throw new UserNotFoundError();
-    res.status(200).send(subGenre);
+    res.status(200).send(user);
   } catch (err) {
     let status = { code: 500, message: "User not Found" };
     if (err instanceof UserNotFoundError) {
@@ -45,16 +45,19 @@ export const getUser: reqRes = async (req, res) => {
 
 export const updateUser: reqRes = async (req, res) => {
   try {
-    const user = await Users.findById(req.params.id);
+    const user = await User.findById(req.params.id);
+    console.log(user);
     if (!user) throw new UserNotFoundError();
-    if (req.body.displayname) user.displayName = req.body.displayName;
+    console.log(req.body);
+    if (req.body.displayName) user.displayName = req.body.displayName;
     if (req.body.photoURL) user.photoURL = req.body.photoURL;
-    if (req.body.darkTheme) user.darkTheme = req.body.darkTheme;
+    if (req.body.darkTheme === true) user.darkTheme = true;
+    if (req.body.darkTheme === false) user.darkTheme = false;
     user.save();
-    res.status(200).send(subGenre);
+    res.status(200).send(user);
   } catch (err) {
     let status = { code: 500, message: "Server Error" };
-    if (err instanceof SubGenreNotFoundError) {
+    if (err instanceof UserNotFoundError) {
       status = { code: 404, message: err.message };
     }
     res.status(status.code).send(status.message);
@@ -65,7 +68,7 @@ export const updateUser: reqRes = async (req, res) => {
 
 export const deleteUser: reqRes = async (req, res) => {
   try {
-    await Users.findByIdAndDelete(req.params.id);
+    await User.findByIdAndDelete(req.params.id);
     res.status(204).send();
   } catch (err) {
     let status = { code: 500, message: "User Not Found" };

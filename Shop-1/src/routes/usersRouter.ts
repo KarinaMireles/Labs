@@ -10,7 +10,7 @@ import {
 const routes = express.Router();
 
 routes.post("/", postUser);
-routes.get("/", getUserss);
+routes.get("/", getUsers);
 routes.get("/:id", getUser);
 routes.put("/:id", updateUser);
 routes.delete("/:id", deleteUser);

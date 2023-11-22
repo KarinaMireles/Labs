@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema(
   {
-    displayNamename: {
+    displayName: {
       type: String,
       required: true,
     },
@@ -17,5 +17,5 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const User = mongoose.model("Users", SubGenreSchema);
+const User = mongoose.model("Users", UserSchema);
 export default User;
